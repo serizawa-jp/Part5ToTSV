@@ -14,7 +14,9 @@
 	const parse = (s) => {
 		const arr = s
 			.split(/\r?\n/)
-			.map((s) => s.replace(/\d\s?\d\d\s?\./, ""))
+			.map((s) => s.replace("GO ON TO THE NEXT PAGE", ""))
+			.map((s) => s.replace(/\d\s?\d\s?\d\s?\./, ""))
+			.map((s) => s.replace("■", ""))
 			.map((s) => s.trim())
 			.filter((s) => s !== "");
 		const problems = [];
@@ -26,12 +28,14 @@
 
 			if (a.indexOf("(D)") === -1) continue;
 
+			p = p.replace(/^[^a-zA-Z\-]*/, "");
+
 			const pos = p.indexOf("(A)");
 			problems.push({
 				question: p.substring(0, pos),
 				choices: p
 					.substring(pos)
-					.split(/\([ABCD]\)/)
+					.split(/\([AB8CD]\)/)
 					.map((s) => s.trim())
 					.filter((s) => s !== ""),
 			});
