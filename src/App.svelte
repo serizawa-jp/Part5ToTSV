@@ -11,13 +11,17 @@
 			.join("\n");
 	};
 
+	const sanitize = (s) =>
+		s
+			.replace("GO ON TO THE NEXT PAGE", "")
+			.replace(/\d\s?\d\s?\d\s?\./, "")
+			.replace("■", "")
+			.trim();
+
 	const parse = (s) => {
 		const arr = s
 			.split(/\r?\n/)
-			.map((s) => s.replace("GO ON TO THE NEXT PAGE", ""))
-			.map((s) => s.replace(/\d\s?\d\s?\d\s?\./, ""))
-			.map((s) => s.replace("■", ""))
-			.map((s) => s.trim())
+			.map(sanitize)
 			.filter((s) => s !== "");
 		const problems = [];
 
