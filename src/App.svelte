@@ -15,7 +15,9 @@
 		s
 			.replace("GO ON TO THE NEXT PAGE", "")
 			.replace(/\d\s?\d\s?\d\s?\./, "")
+			.replace(/\u00AD/, "") // remove unicode space
 			.replace("■", "")
+			.replace(/\s-+[\s,]/, " ANSWER ")
 			.trim();
 
 	const parse = (s) => {
